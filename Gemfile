@@ -50,5 +50,7 @@ group :test do
   gem 'capybara'
 end
 
-gem 'zurb-foundation'
+
+gem 'foundation-rails'
+
 
