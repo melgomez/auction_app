@@ -221,13 +221,13 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner (~> 1.4.1)
   factory_girl_rails (~> 4.0)
-  foundation-rails
+  foundation-rails (~> 5.5.0)
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
   rails (= 4.2.0)
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.3)
   sdoc (~> 0.4.0)
   spring
   turbolinks
