@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :bids
+
   resources :items
 
   get "signup", to: 'users#new', as: 'signup'
