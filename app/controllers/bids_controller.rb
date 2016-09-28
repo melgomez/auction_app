@@ -1,10 +1,14 @@
 class BidsController < ApplicationController
   before_action :set_bid, only: [:show, :edit, :update, :destroy]
-
+  before_action :current_item, only: [:new, :create, :update]
   # GET /bids
   # GET /bids.json
   def index
-    @bids = Bid.all
+    if current_item != nil
+      @bids = @current_item.bids
+    else
+      @bids = Bid.all
+    end
   end
 
   # GET /bids/1
@@ -24,7 +28,11 @@ class BidsController < ApplicationController
   # POST /bids
   # POST /bids.json
   def create
-    @bid = Bid.new(bid_params)
+
+    @bid = Bid.find_or_initialize_by(user_id: current_user, item_id: current_item)
+    @bid.current_bid = params[:bid][:current_bid]
+    @bid.item = current_item
+    @bid.user = current_user
 
     respond_to do |format|
       if @bid.save
@@ -62,13 +70,18 @@ class BidsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bid
-      @bid = Bid.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def bid_params
-      params.require(:bid).permit(:item_id, :user_id, :current_bid)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bid
+    @bid = Bid.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def bid_params
+    params.require(:bid).permit(:item_id, :user_id, :current_bid)
+  end
+
+  def current_item
+    @current_item ||= Item.find(params[:item_id]) if params[:item_id]
+  end
 end

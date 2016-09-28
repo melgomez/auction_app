@@ -24,3 +24,22 @@
 	padding: 5px;
 	text-align: center;
 }
+.position:first-child {
+	margin-left: 0;
+}
+.position {
+	margin-left: -5px;
+	position: relative;
+}
+.digit.static {
+	position: relative !important;
+}
+.position .digit:last-child {
+	position: absolute;
+}
+.countSeconds .position:last-child .digit {
+	position: absolute !important;
+}
+.countDiv.countDiv3 {
+	padding-left: 15px;
+}

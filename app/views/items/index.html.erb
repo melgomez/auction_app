@@ -1,31 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Starting bid</th>
-      <th>Auction end</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.starting_bid %></td>
-        <td><%= item.auction_end %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+<div class="small-12 columns">
+	<h1>Listing Items</h1>
+	
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Starting bid</th>
+	      <th>Auction end</th>
+	      <th colspan="4"></th>
+	    </tr>
+	  </thead>
+	
+	  <tbody>
+	    <% @items.each do |item| %>
+	      <tr>
+	        <td><%= item.name %></td>
+	        <td><%= item.starting_bid %></td>
+	        <td><%= item.auction_end.strftime('%F') %></td>
+	        <td><%= link_to 'Show', item %></td>
+	        <% if current_user %>
+		        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+		        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	        <% end%>
+	        <td><%= link_to 'Bid', new_item_bid_path(item.id) %>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	<%= link_to 'New Item', new_item_path %>
+</div>

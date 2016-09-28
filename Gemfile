@@ -44,12 +44,17 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'database_cleaner', '~> 1.4.1'
 end
+
 gem 'rspec-rails', group: [:test, :development]
+
 group :test do
   gem 'factory_girl_rails', '~>4.0'
   gem 'capybara'
 end
 
+gem 'angularjs-rails'
+
 gem 'foundation-rails', '~> 5.5.0'
 # gem 'compass-rails'
 
+gem 'jquery-turbolinks'

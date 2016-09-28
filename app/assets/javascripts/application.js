@@ -11,7 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.countdown
+//= require angular
+//= require angular-resource
 //= require foundation
 //= require turbolinks
 //= require_tree .

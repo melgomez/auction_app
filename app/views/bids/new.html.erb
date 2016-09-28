@@ -1,5 +1,25 @@
-<h1>New Bid</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', bids_path %>
+<div class="small-12 columns">
+	<h1>Bid on <%= @current_item.name %></h1>
+	
+	<div id="item-details">
+		<ul>
+			<% if has_bids? %>
+				<li><strong>Current bid:</strong> $<%= @current_item.bids.highest_bid.first.current_bid %></li>
+			<% else %>
+				<li><strong>Current bid:</strong> This item has no current bid.</li>
+			<% end %>
+			<li id="item-auction-end"><strong>Auction Ends:</strong> <span class="auction-end"><%= @current_item.auction_end.strftime('%F') %></span></li>
+		</ul>
+	</div>
+	
+	<%= form_for(:bid, :url => {:action => 'create', :item_id => @current_item.id}, :html => {:id => "new-bid-form"} ) do |f|%>
+		 <div class="field">
+		    <%= f.label :current_bid %><br>
+		    <%= f.text_field :current_bid %>
+		  </div>
+		  <div class="actions">
+		    <%= f.submit %>
+		  </div>
+	<% end %>
+	<%= link_to 'Back', bids_path %>
+</div>
